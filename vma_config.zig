@@ -6,6 +6,8 @@
 pub const debugConfig = Config{
     // Override values here for your build
     .vulkanVersion = 1001000, // Vulkan 1.1
+    .staticVulkanFunctions = false,
+    .memoryBudget = true,
     //.recordingEnabled = true,
     //.statsStringEnabled = false,
     //.debugMargin = 64,
@@ -18,6 +20,8 @@ pub const debugConfig = Config{
 pub const releaseConfig = Config{
     // Override values here for your build
     .vulkanVersion = 1001000, // Vulkan 1.1
+    .staticVulkanFunctions = false,
+    .memoryBudget = true,
     //.statsStringEnabled = false,
 };
 
