@@ -156,7 +156,7 @@ pub const Allocator = enum(usize) {
         const rc = vmaFindMemoryTypeIndex(allocator, memoryTypeBits, &allocationCreateInfo, &index);
         if (@enumToInt(rc) >= 0) return index;
 
-        if (rc == .ERROR_FEATURE_NOT_PRESENT) return error.VK_FEATURE_NOT_PRESENT;
+        if (rc == .error_feature_not_present) return error.VK_FEATURE_NOT_PRESENT;
         return error.VK_UNDOCUMENTED_ERROR;
     }
 
@@ -180,10 +180,10 @@ pub const Allocator = enum(usize) {
         if (@enumToInt(rc) >= 0) return index;
 
         return switch (rc) {
-            .ERROR_OUT_OF_HOST_MEMORY => error.VK_OUT_OF_HOST_MEMORY,
-            .ERROR_OUT_OF_DEVICE_MEMORY => error.VK_OUT_OF_DEVICE_MEMORY,
-            .ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS => error.VK_INVALID_OPAQUE_CAPTURE_ADDRESS,
-            .ERROR_FEATURE_NOT_PRESENT => error.VK_FEATURE_NOT_PRESENT,
+            .error_out_of_host_memory => error.VK_OUT_OF_HOST_MEMORY,
+            .error_out_of_device_memory => error.VK_OUT_OF_DEVICE_MEMORY,
+            .error_invalid_opaque_capture_address => error.VK_INVALID_OPAQUE_CAPTURE_ADDRESS,
+            .error_feature_not_present => error.VK_FEATURE_NOT_PRESENT,
             else => error.VK_UNDOCUMENTED_ERROR,
         };
     }
@@ -208,9 +208,9 @@ pub const Allocator = enum(usize) {
         if (@enumToInt(rc) >= 0) return index;
 
         return switch (rc) {
-            .ERROR_OUT_OF_HOST_MEMORY => error.VK_OUT_OF_HOST_MEMORY,
-            .ERROR_OUT_OF_DEVICE_MEMORY => error.VK_OUT_OF_DEVICE_MEMORY,
-            .ERROR_FEATURE_NOT_PRESENT => error.VK_FEATURE_NOT_PRESENT,
+            .error_out_of_host_memory => error.VK_OUT_OF_HOST_MEMORY,
+            .error_out_of_device_memory => error.VK_OUT_OF_DEVICE_MEMORY,
+            .error_feature_not_present => error.VK_FEATURE_NOT_PRESENT,
             else => error.VK_UNDOCUMENTED_ERROR,
         };
     }
@@ -226,12 +226,12 @@ pub const Allocator = enum(usize) {
         if (@enumToInt(rc) >= 0) return pool;
 
         return switch (rc) {
-            .ERROR_OUT_OF_HOST_MEMORY => error.VK_OUT_OF_HOST_MEMORY,
-            .ERROR_OUT_OF_DEVICE_MEMORY => error.VK_OUT_OF_DEVICE_MEMORY,
-            .ERROR_TOO_MANY_OBJECTS => error.VK_TOO_MANY_OBJECTS,
-            .ERROR_INVALID_EXTERNAL_HANDLE => error.VK_INVALID_EXTERNAL_HANDLE,
-            .ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS => error.VK_INVALID_OPAQUE_CAPTURE_ADDRESS,
-            .ERROR_MEMORY_MAP_FAILED => error.VK_MEMORY_MAP_FAILED,
+            .error_out_of_host_memory => error.VK_OUT_OF_HOST_MEMORY,
+            .error_out_of_device_memory => error.VK_OUT_OF_DEVICE_MEMORY,
+            .error_too_many_objects => error.VK_TOO_MANY_OBJECTS,
+            .error_invalid_external_handle => error.VK_INVALID_EXTERNAL_HANDLE,
+            .error_invalid_opaque_capture_address => error.VK_INVALID_OPAQUE_CAPTURE_ADDRESS,
+            .error_memory_map_failed => error.VK_MEMORY_MAP_FAILED,
             else => error.VK_UNDOCUMENTED_ERROR,
         };
     }
@@ -287,11 +287,11 @@ pub const Allocator = enum(usize) {
         if (@enumToInt(rc) >= 0) return;
 
         return switch (rc) {
-            .ERROR_FEATURE_NOT_PRESENT => error.VMA_CORRUPTION_DETECTION_DISABLED,
-            .ERROR_VALIDATION_FAILED_EXT => error.VMA_CORRUPTION_DETECTED,
-            .ERROR_OUT_OF_HOST_MEMORY => error.VK_OUT_OF_HOST_MEMORY,
-            .ERROR_OUT_OF_DEVICE_MEMORY => error.VK_OUT_OF_DEVICE_MEMORY,
-            .ERROR_MEMORY_MAP_FAILED => error.VK_MEMORY_MAP_FAILED,
+            .error_feature_not_present => error.VMA_CORRUPTION_DETECTION_DISABLED,
+            .error_validation_failed_ext => error.VMA_CORRUPTION_DETECTED,
+            .error_out_of_host_memory => error.VK_OUT_OF_HOST_MEMORY,
+            .error_out_of_device_memory => error.VK_OUT_OF_DEVICE_MEMORY,
+            .error_memory_map_failed => error.VK_MEMORY_MAP_FAILED,
             else => error.VK_UNDOCUMENTED_ERROR,
         };
     }
@@ -331,14 +331,14 @@ pub const Allocator = enum(usize) {
         const rc = vmaAllocateMemory(allocator, &vkMemoryRequirements, &createInfo, &result, outInfo);
         if (@enumToInt(rc) >= 0) return result;
         return switch (rc) {
-            .ERROR_OUT_OF_HOST_MEMORY => error.VK_OUT_OF_HOST_MEMORY,
-            .ERROR_OUT_OF_DEVICE_MEMORY => error.VK_OUT_OF_DEVICE_MEMORY,
-            .ERROR_TOO_MANY_OBJECTS => error.VK_TOO_MANY_OBJECTS,
-            .ERROR_INVALID_EXTERNAL_HANDLE => error.VK_INVALID_EXTERNAL_HANDLE,
-            .ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS => error.VK_INVALID_OPAQUE_CAPTURE_ADDRESS,
-            .ERROR_MEMORY_MAP_FAILED => error.VK_MEMORY_MAP_FAILED,
-            .ERROR_FRAGMENTED_POOL => error.VK_FRAGMENTED_POOL,
-            .ERROR_OUT_OF_POOL_MEMORY => error.VK_OUT_OF_POOL_MEMORY,
+            .error_out_of_host_memory => error.VK_OUT_OF_HOST_MEMORY,
+            .error_out_of_device_memory => error.VK_OUT_OF_DEVICE_MEMORY,
+            .error_too_many_objects => error.VK_TOO_MANY_OBJECTS,
+            .error_invalid_external_handle => error.VK_INVALID_EXTERNAL_HANDLE,
+            .error_invalid_opaque_capture_address => error.VK_INVALID_OPAQUE_CAPTURE_ADDRESS,
+            .error_memory_map_failed => error.VK_MEMORY_MAP_FAILED,
+            .error_fragmented_pool => error.VK_FRAGMENTED_POOL,
+            .error_out_of_pool_memory => error.VK_OUT_OF_POOL_MEMORY,
             else => error.VK_UNDOCUMENTED_ERROR,
         };
     }
@@ -365,14 +365,14 @@ pub const Allocator = enum(usize) {
         const rc = vmaAllocateMemoryPages(allocator, &vkMemoryRequirements, &createInfo, outAllocations.len, outAllocations.ptr, null);
         if (@enumToInt(rc) >= 0) return;
         return switch (rc) {
-            .ERROR_OUT_OF_HOST_MEMORY => error.VK_OUT_OF_HOST_MEMORY,
-            .ERROR_OUT_OF_DEVICE_MEMORY => error.VK_OUT_OF_DEVICE_MEMORY,
-            .ERROR_TOO_MANY_OBJECTS => error.VK_TOO_MANY_OBJECTS,
-            .ERROR_INVALID_EXTERNAL_HANDLE => error.VK_INVALID_EXTERNAL_HANDLE,
-            .ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS => error.VK_INVALID_OPAQUE_CAPTURE_ADDRESS,
-            .ERROR_MEMORY_MAP_FAILED => error.VK_MEMORY_MAP_FAILED,
-            .ERROR_FRAGMENTED_POOL => error.VK_FRAGMENTED_POOL,
-            .ERROR_OUT_OF_POOL_MEMORY => error.VK_OUT_OF_POOL_MEMORY,
+            .error_out_of_host_memory => error.VK_OUT_OF_HOST_MEMORY,
+            .error_out_of_device_memory => error.VK_OUT_OF_DEVICE_MEMORY,
+            .error_too_many_objects => error.VK_TOO_MANY_OBJECTS,
+            .error_invalid_external_handle => error.VK_INVALID_EXTERNAL_HANDLE,
+            .error_invalid_opaque_capture_address => error.VK_INVALID_OPAQUE_CAPTURE_ADDRESS,
+            .error_memory_map_failed => error.VK_MEMORY_MAP_FAILED,
+            .error_fragmented_pool => error.VK_FRAGMENTED_POOL,
+            .error_out_of_pool_memory => error.VK_OUT_OF_POOL_MEMORY,
             else => error.VK_UNDOCUMENTED_ERROR,
         };
     }
@@ -381,14 +381,14 @@ pub const Allocator = enum(usize) {
         const rc = vmaAllocateMemoryPages(allocator, &vkMemoryRequirements, &createInfo, outAllocations.len, outAllocations.ptr, outInfo.ptr);
         if (@enumToInt(rc) >= 0) return;
         return switch (rc) {
-            .ERROR_OUT_OF_HOST_MEMORY => error.VK_OUT_OF_HOST_MEMORY,
-            .ERROR_OUT_OF_DEVICE_MEMORY => error.VK_OUT_OF_DEVICE_MEMORY,
-            .ERROR_TOO_MANY_OBJECTS => error.VK_TOO_MANY_OBJECTS,
-            .ERROR_INVALID_EXTERNAL_HANDLE => error.VK_INVALID_EXTERNAL_HANDLE,
-            .ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS => error.VK_INVALID_OPAQUE_CAPTURE_ADDRESS,
-            .ERROR_MEMORY_MAP_FAILED => error.VK_MEMORY_MAP_FAILED,
-            .ERROR_FRAGMENTED_POOL => error.VK_FRAGMENTED_POOL,
-            .ERROR_OUT_OF_POOL_MEMORY => error.VK_OUT_OF_POOL_MEMORY,
+            .error_out_of_host_memory => error.VK_OUT_OF_HOST_MEMORY,
+            .error_out_of_device_memory => error.VK_OUT_OF_DEVICE_MEMORY,
+            .error_too_many_objects => error.VK_TOO_MANY_OBJECTS,
+            .error_invalid_external_handle => error.VK_INVALID_EXTERNAL_HANDLE,
+            .error_invalid_opaque_capture_address => error.VK_INVALID_OPAQUE_CAPTURE_ADDRESS,
+            .error_memory_map_failed => error.VK_MEMORY_MAP_FAILED,
+            .error_fragmented_pool => error.VK_FRAGMENTED_POOL,
+            .error_out_of_pool_memory => error.VK_OUT_OF_POOL_MEMORY,
             else => error.VK_UNDOCUMENTED_ERROR,
         };
     }
@@ -406,14 +406,14 @@ pub const Allocator = enum(usize) {
         if (@enumToInt(rc) >= 0) return result;
 
         return switch (rc) {
-            .ERROR_OUT_OF_HOST_MEMORY => error.VK_OUT_OF_HOST_MEMORY,
-            .ERROR_OUT_OF_DEVICE_MEMORY => error.VK_OUT_OF_DEVICE_MEMORY,
-            .ERROR_TOO_MANY_OBJECTS => error.VK_TOO_MANY_OBJECTS,
-            .ERROR_INVALID_EXTERNAL_HANDLE => error.VK_INVALID_EXTERNAL_HANDLE,
-            .ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS => error.VK_INVALID_OPAQUE_CAPTURE_ADDRESS,
-            .ERROR_MEMORY_MAP_FAILED => error.VK_MEMORY_MAP_FAILED,
-            .ERROR_FRAGMENTED_POOL => error.VK_FRAGMENTED_POOL,
-            .ERROR_OUT_OF_POOL_MEMORY => error.VK_OUT_OF_POOL_MEMORY,
+            .error_out_of_host_memory => error.VK_OUT_OF_HOST_MEMORY,
+            .error_out_of_device_memory => error.VK_OUT_OF_DEVICE_MEMORY,
+            .error_too_many_objects => error.VK_TOO_MANY_OBJECTS,
+            .error_invalid_external_handle => error.VK_INVALID_EXTERNAL_HANDLE,
+            .error_invalid_opaque_capture_address => error.VK_INVALID_OPAQUE_CAPTURE_ADDRESS,
+            .error_memory_map_failed => error.VK_MEMORY_MAP_FAILED,
+            .error_fragmented_pool => error.VK_FRAGMENTED_POOL,
+            .error_out_of_pool_memory => error.VK_OUT_OF_POOL_MEMORY,
             else => error.VK_UNDOCUMENTED_ERROR,
         };
     }
@@ -428,14 +428,14 @@ pub const Allocator = enum(usize) {
         if (@enumToInt(rc) >= 0) return result;
 
         return switch (rc) {
-            .ERROR_OUT_OF_HOST_MEMORY => error.VK_OUT_OF_HOST_MEMORY,
-            .ERROR_OUT_OF_DEVICE_MEMORY => error.VK_OUT_OF_DEVICE_MEMORY,
-            .ERROR_TOO_MANY_OBJECTS => error.VK_TOO_MANY_OBJECTS,
-            .ERROR_INVALID_EXTERNAL_HANDLE => error.VK_INVALID_EXTERNAL_HANDLE,
-            .ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS => error.VK_INVALID_OPAQUE_CAPTURE_ADDRESS,
-            .ERROR_MEMORY_MAP_FAILED => error.VK_MEMORY_MAP_FAILED,
-            .ERROR_FRAGMENTED_POOL => error.VK_FRAGMENTED_POOL,
-            .ERROR_OUT_OF_POOL_MEMORY => error.VK_OUT_OF_POOL_MEMORY,
+            .error_out_of_host_memory => error.VK_OUT_OF_HOST_MEMORY,
+            .error_out_of_device_memory => error.VK_OUT_OF_DEVICE_MEMORY,
+            .error_too_many_objects => error.VK_TOO_MANY_OBJECTS,
+            .error_invalid_external_handle => error.VK_INVALID_EXTERNAL_HANDLE,
+            .error_invalid_opaque_capture_address => error.VK_INVALID_OPAQUE_CAPTURE_ADDRESS,
+            .error_memory_map_failed => error.VK_MEMORY_MAP_FAILED,
+            .error_fragmented_pool => error.VK_FRAGMENTED_POOL,
+            .error_out_of_pool_memory => error.VK_OUT_OF_POOL_MEMORY,
             else => error.VK_UNDOCUMENTED_ERROR,
         };
     }
@@ -569,9 +569,9 @@ pub const Allocator = enum(usize) {
         const rc = vmaMapMemory(allocator, allocation, &data);
         if (@enumToInt(rc) >= 0) return @intToPtr([*]T, @ptrToInt(data));
         return switch (rc) {
-            .ERROR_OUT_OF_HOST_MEMORY => error.VK_OUT_OF_HOST_MEMORY,
-            .ERROR_OUT_OF_DEVICE_MEMORY => error.VK_OUT_OF_DEVICE_MEMORY,
-            .ERROR_MEMORY_MAP_FAILED => error.VK_MEMORY_MAP_FAILED,
+            .error_out_of_host_memory => error.VK_OUT_OF_HOST_MEMORY,
+            .error_out_of_device_memory => error.VK_OUT_OF_DEVICE_MEMORY,
+            .error_memory_map_failed => error.VK_MEMORY_MAP_FAILED,
             else => error.VK_UNDOCUMENTED_ERROR,
         };
     }
@@ -646,11 +646,11 @@ pub const Allocator = enum(usize) {
         if (@enumToInt(rc) >= 0) return;
 
         return switch (rc) {
-            .ERROR_FEATURE_NOT_PRESENT => error.VMA_CORRUPTION_DETECTION_DISABLED,
-            .ERROR_VALIDATION_FAILED_EXT => error.VMA_CORRUPTION_DETECTED,
-            .ERROR_OUT_OF_HOST_MEMORY => error.VK_OUT_OF_HOST_MEMORY,
-            .ERROR_OUT_OF_DEVICE_MEMORY => error.VK_OUT_OF_DEVICE_MEMORY,
-            .ERROR_MEMORY_MAP_FAILED => error.VK_MEMORY_MAP_FAILED,
+            .error_feature_not_present => error.VMA_CORRUPTION_DETECTION_DISABLED,
+            .error_validation_failed_ext => error.VMA_CORRUPTION_DETECTED,
+            .error_out_of_host_memory => error.VK_OUT_OF_HOST_MEMORY,
+            .error_out_of_device_memory => error.VK_OUT_OF_DEVICE_MEMORY,
+            .error_memory_map_failed => error.VK_MEMORY_MAP_FAILED,
             else => error.VK_UNDOCUMENTED_ERROR,
         };
     }
@@ -691,14 +691,14 @@ pub const Allocator = enum(usize) {
         const rc = vmaDefragmentationBegin(allocator, &info, stats, &context);
         if (@enumToInt(rc) >= 0) return context; // includes NOT_READY
         return switch (rc) {
-            .ERROR_OUT_OF_HOST_MEMORY => error.VK_OUT_OF_HOST_MEMORY,
-            .ERROR_OUT_OF_DEVICE_MEMORY => error.VK_OUT_OF_DEVICE_MEMORY,
-            .ERROR_TOO_MANY_OBJECTS => error.VK_TOO_MANY_OBJECTS,
-            .ERROR_INVALID_EXTERNAL_HANDLE => error.VK_INVALID_EXTERNAL_HANDLE,
-            .ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS => error.VK_INVALID_OPAQUE_CAPTURE_ADDRESS,
-            .ERROR_MEMORY_MAP_FAILED => error.VK_MEMORY_MAP_FAILED,
-            .ERROR_FRAGMENTED_POOL => error.VK_FRAGMENTED_POOL,
-            .ERROR_OUT_OF_POOL_MEMORY => error.VK_OUT_OF_POOL_MEMORY,
+            .error_out_of_host_memory => error.VK_OUT_OF_HOST_MEMORY,
+            .error_out_of_device_memory => error.VK_OUT_OF_DEVICE_MEMORY,
+            .error_too_many_objects => error.VK_TOO_MANY_OBJECTS,
+            .error_invalid_external_handle => error.VK_INVALID_EXTERNAL_HANDLE,
+            .error_invalid_opaque_capture_address => error.VK_INVALID_OPAQUE_CAPTURE_ADDRESS,
+            .error_memory_map_failed => error.VK_MEMORY_MAP_FAILED,
+            .error_fragmented_pool => error.VK_FRAGMENTED_POOL,
+            .error_out_of_pool_memory => error.VK_OUT_OF_POOL_MEMORY,
             else => error.VK_UNDOCUMENTED_ERROR,
         };
     }
@@ -711,14 +711,14 @@ pub const Allocator = enum(usize) {
         const rc = vmaDefragmentationEnd(allocator, context);
         if (@enumToInt(rc) >= 0) return;
         return switch (rc) {
-            .ERROR_OUT_OF_HOST_MEMORY => error.VK_OUT_OF_HOST_MEMORY,
-            .ERROR_OUT_OF_DEVICE_MEMORY => error.VK_OUT_OF_DEVICE_MEMORY,
-            .ERROR_TOO_MANY_OBJECTS => error.VK_TOO_MANY_OBJECTS,
-            .ERROR_INVALID_EXTERNAL_HANDLE => error.VK_INVALID_EXTERNAL_HANDLE,
-            .ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS => error.VK_INVALID_OPAQUE_CAPTURE_ADDRESS,
-            .ERROR_MEMORY_MAP_FAILED => error.VK_MEMORY_MAP_FAILED,
-            .ERROR_FRAGMENTED_POOL => error.VK_FRAGMENTED_POOL,
-            .ERROR_OUT_OF_POOL_MEMORY => error.VK_OUT_OF_POOL_MEMORY,
+            .error_out_of_host_memory => error.VK_OUT_OF_HOST_MEMORY,
+            .error_out_of_device_memory => error.VK_OUT_OF_DEVICE_MEMORY,
+            .error_too_many_objects => error.VK_TOO_MANY_OBJECTS,
+            .error_invalid_external_handle => error.VK_INVALID_EXTERNAL_HANDLE,
+            .error_invalid_opaque_capture_address => error.VK_INVALID_OPAQUE_CAPTURE_ADDRESS,
+            .error_memory_map_failed => error.VK_MEMORY_MAP_FAILED,
+            .error_fragmented_pool => error.VK_FRAGMENTED_POOL,
+            .error_out_of_pool_memory => error.VK_OUT_OF_POOL_MEMORY,
             else => error.VK_UNDOCUMENTED_ERROR,
         };
     }
@@ -738,9 +738,9 @@ pub const Allocator = enum(usize) {
         const rc = vmaBindBufferMemory(allocator, allocation, buffer);
         if (@enumToInt(rc) >= 0) return;
         return switch (rc) {
-            .ERROR_OUT_OF_HOST_MEMORY => error.VK_OUT_OF_HOST_MEMORY,
-            .ERROR_OUT_OF_DEVICE_MEMORY => error.VK_OUT_OF_DEVICE_MEMORY,
-            .ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS => error.VK_INVALID_OPAQUE_CAPTURE_ADDRESS,
+            .error_out_of_host_memory => error.VK_OUT_OF_HOST_MEMORY,
+            .error_out_of_device_memory => error.VK_OUT_OF_DEVICE_MEMORY,
+            .error_invalid_opaque_capture_address => error.VK_INVALID_OPAQUE_CAPTURE_ADDRESS,
             else => error.VK_UNDOCUMENTED_ERROR,
         };
     }
@@ -758,9 +758,9 @@ pub const Allocator = enum(usize) {
         const rc = vmaBindBufferMemory2(allocator, allocation, allocationLocalOffset, buffer, pNext);
         if (@enumToInt(rc) >= 0) return;
         return switch (rc) {
-            .ERROR_OUT_OF_HOST_MEMORY => error.VK_OUT_OF_HOST_MEMORY,
-            .ERROR_OUT_OF_DEVICE_MEMORY => error.VK_OUT_OF_DEVICE_MEMORY,
-            .ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS => error.VK_INVALID_OPAQUE_CAPTURE_ADDRESS,
+            .error_out_of_host_memory => error.VK_OUT_OF_HOST_MEMORY,
+            .error_out_of_device_memory => error.VK_OUT_OF_DEVICE_MEMORY,
+            .error_invalid_opaque_capture_address => error.VK_INVALID_OPAQUE_CAPTURE_ADDRESS,
             else => error.VK_UNDOCUMENTED_ERROR,
         };
     }
@@ -780,8 +780,8 @@ pub const Allocator = enum(usize) {
         const rc = vmaBindImageMemory(allocator, allocation, image);
         if (@enumToInt(rc) >= 0) return;
         return switch (rc) {
-            .ERROR_OUT_OF_HOST_MEMORY => error.VK_OUT_OF_HOST_MEMORY,
-            .ERROR_OUT_OF_DEVICE_MEMORY => error.VK_OUT_OF_DEVICE_MEMORY,
+            .error_out_of_host_memory => error.VK_OUT_OF_HOST_MEMORY,
+            .error_out_of_device_memory => error.VK_OUT_OF_DEVICE_MEMORY,
             else => error.VK_UNDOCUMENTED_ERROR,
         };
     }
@@ -799,9 +799,9 @@ pub const Allocator = enum(usize) {
         const rc = vmaBindImageMemory2(allocator, allocation, allocationLocalOffset, image, pNext);
         if (@enumToInt(rc) >= 0) return;
         return switch (rc) {
-            .ERROR_OUT_OF_HOST_MEMORY => error.VK_OUT_OF_HOST_MEMORY,
-            .ERROR_OUT_OF_DEVICE_MEMORY => error.VK_OUT_OF_DEVICE_MEMORY,
-            .ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS => error.VK_INVALID_OPAQUE_CAPTURE_ADDRESS,
+            .error_out_of_host_memory => error.VK_OUT_OF_HOST_MEMORY,
+            .error_out_of_device_memory => error.VK_OUT_OF_DEVICE_MEMORY,
+            .error_invalid_opaque_capture_address => error.VK_INVALID_OPAQUE_CAPTURE_ADDRESS,
             else => error.VK_UNDOCUMENTED_ERROR,
         };
     }
@@ -854,14 +854,14 @@ pub const Allocator = enum(usize) {
         );
         if (@enumToInt(rc) >= 0) return result;
         return switch (rc) {
-            .ERROR_OUT_OF_HOST_MEMORY => error.VK_OUT_OF_HOST_MEMORY,
-            .ERROR_OUT_OF_DEVICE_MEMORY => error.VK_OUT_OF_DEVICE_MEMORY,
-            .ERROR_TOO_MANY_OBJECTS => error.VK_TOO_MANY_OBJECTS,
-            .ERROR_INVALID_EXTERNAL_HANDLE => error.VK_INVALID_EXTERNAL_HANDLE,
-            .ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS => error.VK_INVALID_OPAQUE_CAPTURE_ADDRESS,
-            .ERROR_MEMORY_MAP_FAILED => error.VK_MEMORY_MAP_FAILED,
-            .ERROR_FRAGMENTED_POOL => error.VK_FRAGMENTED_POOL,
-            .ERROR_OUT_OF_POOL_MEMORY => error.VK_OUT_OF_POOL_MEMORY,
+            .error_out_of_host_memory => error.VK_OUT_OF_HOST_MEMORY,
+            .error_out_of_device_memory => error.VK_OUT_OF_DEVICE_MEMORY,
+            .error_too_many_objects => error.VK_TOO_MANY_OBJECTS,
+            .error_invalid_external_handle => error.VK_INVALID_EXTERNAL_HANDLE,
+            .error_invalid_opaque_capture_address => error.VK_INVALID_OPAQUE_CAPTURE_ADDRESS,
+            .error_memory_map_failed => error.VK_MEMORY_MAP_FAILED,
+            .error_fragmented_pool => error.VK_FRAGMENTED_POOL,
+            .error_out_of_pool_memory => error.VK_OUT_OF_POOL_MEMORY,
             else => error.VK_UNDOCUMENTED_ERROR,
         };
     }
@@ -908,14 +908,14 @@ pub const Allocator = enum(usize) {
         );
         if (@enumToInt(rc) >= 0) return result;
         return switch (rc) {
-            .ERROR_OUT_OF_HOST_MEMORY => error.VK_OUT_OF_HOST_MEMORY,
-            .ERROR_OUT_OF_DEVICE_MEMORY => error.VK_OUT_OF_DEVICE_MEMORY,
-            .ERROR_TOO_MANY_OBJECTS => error.VK_TOO_MANY_OBJECTS,
-            .ERROR_INVALID_EXTERNAL_HANDLE => error.VK_INVALID_EXTERNAL_HANDLE,
-            .ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS => error.VK_INVALID_OPAQUE_CAPTURE_ADDRESS,
-            .ERROR_MEMORY_MAP_FAILED => error.VK_MEMORY_MAP_FAILED,
-            .ERROR_FRAGMENTED_POOL => error.VK_FRAGMENTED_POOL,
-            .ERROR_OUT_OF_POOL_MEMORY => error.VK_OUT_OF_POOL_MEMORY,
+            .error_out_of_host_memory => error.VK_OUT_OF_HOST_MEMORY,
+            .error_out_of_device_memory => error.VK_OUT_OF_DEVICE_MEMORY,
+            .error_too_many_objects => error.VK_TOO_MANY_OBJECTS,
+            .error_invalid_external_handle => error.VK_INVALID_EXTERNAL_HANDLE,
+            .error_invalid_opaque_capture_address => error.VK_INVALID_OPAQUE_CAPTURE_ADDRESS,
+            .error_memory_map_failed => error.VK_MEMORY_MAP_FAILED,
+            .error_fragmented_pool => error.VK_FRAGMENTED_POOL,
+            .error_out_of_pool_memory => error.VK_OUT_OF_POOL_MEMORY,
             else => error.VK_UNDOCUMENTED_ERROR,
         };
     }
@@ -944,7 +944,7 @@ pub const PFN_AllocateDeviceMemoryFunction = fn (
     memoryType: u32,
     memory: vk.DeviceMemory,
     size: vk.DeviceSize,
-) callconv(vk.CallConv) void;
+) callconv(vk.vulkan_call_conv) void;
 
 /// Callback function called before vkFreeMemory.
 pub const PFN_FreeDeviceMemoryFunction = fn (
@@ -952,7 +952,7 @@ pub const PFN_FreeDeviceMemoryFunction = fn (
     memoryType: u32,
     memory: vk.DeviceMemory,
     size: vk.DeviceSize,
-) callconv(vk.CallConv) void;
+) callconv(vk.vulkan_call_conv) void;
 
 /// \brief Set of callbacks that the library will call for `vkAllocateMemory` and `vkFreeMemory`.
 ///
@@ -1024,45 +1024,45 @@ pub const AllocatorCreateFlags = packed struct {
 
     __reserved_bits_04_31: u28 = 0,
 
-    pub usingnamespace vk.FlagsMixin(@This());
+    pub usingnamespace vk.FlagsMixin(@This(), vk.Flags);
 };
 
 /// \brief Pointers to some Vulkan functions - a subset used by the library.
 ///
 /// Used in AllocatorCreateInfo::pVulkanFunctions.
 pub const VulkanFunctions = extern struct {
-    vkGetPhysicalDeviceProperties: @TypeOf(vk.vkGetPhysicalDeviceProperties),
-    vkGetPhysicalDeviceMemoryProperties: @TypeOf(vk.vkGetPhysicalDeviceMemoryProperties),
-    vkAllocateMemory: @TypeOf(vk.vkAllocateMemory),
-    vkFreeMemory: @TypeOf(vk.vkFreeMemory),
-    vkMapMemory: @TypeOf(vk.vkMapMemory),
-    vkUnmapMemory: @TypeOf(vk.vkUnmapMemory),
-    vkFlushMappedMemoryRanges: @TypeOf(vk.vkFlushMappedMemoryRanges),
-    vkInvalidateMappedMemoryRanges: @TypeOf(vk.vkInvalidateMappedMemoryRanges),
-    vkBindBufferMemory: @TypeOf(vk.vkBindBufferMemory),
-    vkBindImageMemory: @TypeOf(vk.vkBindImageMemory),
-    vkGetBufferMemoryRequirements: @TypeOf(vk.vkGetBufferMemoryRequirements),
-    vkGetImageMemoryRequirements: @TypeOf(vk.vkGetImageMemoryRequirements),
-    vkCreateBuffer: @TypeOf(vk.vkCreateBuffer),
-    vkDestroyBuffer: @TypeOf(vk.vkDestroyBuffer),
-    vkCreateImage: @TypeOf(vk.vkCreateImage),
-    vkDestroyImage: @TypeOf(vk.vkDestroyImage),
-    vkCmdCopyBuffer: @TypeOf(vk.vkCmdCopyBuffer),
+    vkGetPhysicalDeviceProperties: vk.PfnGetPhysicalDeviceProperties,
+    vkGetPhysicalDeviceMemoryProperties: vk.PfnGetPhysicalDeviceMemoryProperties,
+    vkAllocateMemory: vk.PfnAllocateMemory,
+    vkFreeMemory: vk.PfnFreeMemory,
+    vkMapMemory: vk.PfnMapMemory,
+    vkUnmapMemory: vk.PfnUnmapMemory,
+    vkFlushMappedMemoryRanges: vk.PfnFlushMappedMemoryRanges,
+    vkInvalidateMappedMemoryRanges: vk.PfnInvalidateMappedMemoryRanges,
+    vkBindBufferMemory: vk.PfnBindBufferMemory,
+    vkBindImageMemory: vk.PfnBindImageMemory,
+    vkGetBufferMemoryRequirements: vk.PfnGetBufferMemoryRequirements,
+    vkGetImageMemoryRequirements: vk.PfnGetImageMemoryRequirements,
+    vkCreateBuffer: vk.PfnCreateBuffer,
+    vkDestroyBuffer: vk.PfnDestroyBuffer,
+    vkCreateImage: vk.PfnCreateImage,
+    vkDestroyImage: vk.PfnDestroyImage,
+    vkCmdCopyBuffer: vk.PfnCmdCopyBuffer,
 
     dedicatedAllocation: if (config.dedicatedAllocation or config.vulkanVersion >= 1001000) DedicatedAllocationFunctions else void,
     bindMemory2: if (config.bindMemory2 or config.vulkanVersion >= 1001000) BindMemory2Functions else void,
     memoryBudget: if (config.memoryBudget or config.vulkanVersion >= 1001000) MemoryBudgetFunctions else void,
 
     const DedicatedAllocationFunctions = extern struct {
-        vkGetBufferMemoryRequirements2: @TypeOf(vk.vkGetBufferMemoryRequirements2KHR),
-        vkGetImageMemoryRequirements2: @TypeOf(vk.vkGetImageMemoryRequirements2KHR),
+        vkGetBufferMemoryRequirements2: vk.PfnGetBufferMemoryRequirements2,
+        vkGetImageMemoryRequirements2: vk.PfnGetImageMemoryRequirements2,
     };
     const BindMemory2Functions = extern struct {
-        vkBindBufferMemory2: @TypeOf(vk.vkBindBufferMemory2KHR),
-        vkBindImageMemory2: @TypeOf(vk.vkBindImageMemory2KHR),
+        vkBindBufferMemory2: vk.PfnBindBufferMemory2,
+        vkBindImageMemory2: vk.PfnBindImageMemory2,
     };
     const MemoryBudgetFunctions = extern struct {
-        vkGetPhysicalDeviceMemoryProperties2: @TypeOf(vk.vkGetPhysicalDeviceMemoryProperties2KHR),
+        vkGetPhysicalDeviceMemoryProperties2: vk.PfnGetPhysicalDeviceMemoryProperties2,
     };
 
     fn isDeviceFunc(comptime FuncType: type) bool {
@@ -1078,8 +1078,8 @@ pub const VulkanFunctions = extern struct {
         comptime T: type,
         inst: vk.Instance,
         device: vk.Device,
-        vkGetInstanceProcAddr: fn(vk.Instance, [*:0]const u8) callconv(vk.CallConv) ?vk.PFN_VoidFunction,
-        vkGetDeviceProcAddr: fn(vk.Device, [*:0]const u8) callconv(vk.CallConv) ?vk.PFN_VoidFunction,
+        vkGetInstanceProcAddr: fn (vk.Instance, [*:0]const u8) callconv(vk.vulkan_call_conv) vk.PfnVoidFunction,
+        vkGetDeviceProcAddr: fn (vk.Device, [*:0]const u8) callconv(vk.vulkan_call_conv) vk.PfnVoidFunction,
     ) T {
         if (@typeInfo(T) != .Struct) return undefined;
         var value: T = undefined;
@@ -1087,11 +1087,11 @@ pub const VulkanFunctions = extern struct {
             if (comptime std.mem.startsWith(u8, field.name, "vk")) {
                 if (comptime isDeviceFunc(field.field_type)) {
                     const func = vkGetDeviceProcAddr(device, @ptrCast([*:0]const u8, field.name.ptr));
-                    const resolved = func orelse @panic("Couldn't fetch vk device function "++field.name);
+                    const resolved = func orelse @panic("Couldn't fetch vk device function " ++ field.name);
                     @field(value, field.name) = @ptrCast(field.field_type, resolved);
                 } else {
                     const func = vkGetInstanceProcAddr(inst, @ptrCast([*:0]const u8, field.name.ptr));
-                    const resolved = func orelse @panic("Couldn't fetch vk instance function "++field.name);
+                    const resolved = func orelse @panic("Couldn't fetch vk instance function " ++ field.name);
                     @field(value, field.name) = @ptrCast(field.field_type, resolved);
                 }
             } else {
@@ -1104,11 +1104,10 @@ pub const VulkanFunctions = extern struct {
     pub fn init(
         inst: vk.Instance,
         device: vk.Device,
-        vkGetInstanceProcAddr: fn(vk.Instance, [*:0]const u8) callconv(vk.CallConv) ?vk.PFN_VoidFunction,
+        vkGetInstanceProcAddr: fn (vk.Instance, [*:0]const u8) callconv(vk.vulkan_call_conv) vk.PfnVoidFunction,
     ) VulkanFunctions {
-        const vkGetDeviceProcAddrPtr = vkGetInstanceProcAddr(inst, "vkGetDeviceProcAddr")
-            orelse @panic("Couldn't fetch vkGetDeviceProcAddr: vkGetInstanceProcAddr returned null.");
-        const vkGetDeviceProcAddr = @ptrCast(fn(vk.Device, [*:0]const u8) callconv(vk.CallConv) ?vk.PFN_VoidFunction, vkGetDeviceProcAddrPtr);
+        const vkGetDeviceProcAddrPtr = vkGetInstanceProcAddr(inst, "vkGetDeviceProcAddr") orelse @panic("Couldn't fetch vkGetDeviceProcAddr: vkGetInstanceProcAddr returned null.");
+        const vkGetDeviceProcAddr = @ptrCast(fn (vk.Device, [*:0]const u8) callconv(vk.vulkan_call_conv) vk.PfnVoidFunction, vkGetDeviceProcAddrPtr);
         return loadRecursive(VulkanFunctions, inst, device, vkGetInstanceProcAddr, vkGetDeviceProcAddr);
     }
 };
@@ -1123,7 +1122,7 @@ pub const RecordFlags = packed struct {
 
     __reserved_bits_01_31: u31 = 0,
 
-    pub usingnamespace vk.FlagsMixin(@This());
+    pub usingnamespace vk.FlagsMixin(@This(), vk.Flags);
 };
 
 /// Parameters for recording calls to VMA functions. To be used in AllocatorCreateInfo::pRecordSettings.
@@ -1453,7 +1452,7 @@ pub const AllocationCreateFlags = packed struct {
         .strategyFirstFit = true,
     };
 
-    pub usingnamespace vk.FlagsMixin(@This());
+    pub usingnamespace vk.FlagsMixin(@This(), vk.Flags);
 };
 
 pub const AllocationCreateInfo = extern struct {
@@ -1549,7 +1548,7 @@ pub const PoolCreateFlags = packed struct {
         .buddyAlgorithm = true,
     };
 
-    pub usingnamespace vk.FlagsMixin(@This());
+    pub usingnamespace vk.FlagsMixin(@This(), vk.Flags);
 };
 
 /// \brief Describes parameter of created #Pool.
@@ -1684,7 +1683,7 @@ pub const DefragmentationContext = enum(usize) { Null = 0, _ };
 pub const DefragmentationFlags = packed struct {
     __reserved_bits_0_31: u32 = 0,
 
-    pub usingnamespace vk.FlagsMixin(@This());
+    pub usingnamespace vk.FlagsMixin(@This(), vk.Flags);
 };
 
 /// \brief Parameters for defragmentation.
